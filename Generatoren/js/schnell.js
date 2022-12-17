@@ -206,3 +206,7 @@ function documentLoaded() {
     document.getElementById("GeneratedSentence").textContent = generateSentenceByConfig(generateRandomConfig())
     //document.getElementById("GeneratedSentence").textContent = deklinieren("Quint", "m")
 }
+
+function buttonClick() {
+    document.getElementById("GeneratedSentence").textContent = generateSentenceByConfig(generateRandomConfig())
+}
