@@ -131,7 +131,7 @@ function generateRandomConfig() {
     } else {
         config.PrädikatZeit = "Presens"
     }
-    if(randomIntFromInterval(1, 1) == 1) {
+    if(randomIntFromInterval(1, 20) == 1) {
         config.ACI = true
     } else {
         config.ACI = false
