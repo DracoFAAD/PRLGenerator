@@ -75,7 +75,7 @@ var Konjunktion = [
 ]
 
 var Kopfverbe = [
-
+    ["scire", [], []], ["dicere", [], []]
 ]
 
 var Adjektive = [
@@ -125,10 +125,16 @@ function generateRandomConfig() {
     var config = {}
     config.Saetze = randomIntFromInterval(1, 2);
     config.SatzOhneNomen = false
+    config.verbDeklinieren = true;
     if(randomIntFromInterval(1, 2) == 10) {
         config.PrädikatZeit = "Imperfekt"
     } else {
-        config.PrädikatZeit = null
+        config.PrädikatZeit = "Presens"
+    }
+    if(randomIntFromInterval(1, 1) == 1) {
+        config.ACI = true
+    } else {
+        config.ACI = false
     }
     return config;
 }
@@ -144,99 +150,120 @@ function generateSentenceByConfig(config) {
             Plural = true
         }
 
+
+
+
         //#region KonjunktionBooleans
             var SatzOhneNomen = false
         //#endregion
+        
 
-        if(config.SatzOhneNomen == false) {
-            if (randomIntFromInterval(0, 1) == 1) {
-                var Teil = Konjunktion[randomIntFromInterval(0, Konjunktion.length - 1)]
-                PrädikatZeit = Teil[1]
-                if (Satz.endsWith(" et ")) {
-                    Teil[0] = Teil[0].toLowerCase();
+
+
+        if (config.verbDeklinieren == true) {
+            //--DEFINIERE EINE KONJUNKTION--//
+            if(config.SatzOhneNomen == false) {
+                if (randomIntFromInterval(0, 5) == 1) {
+                    var Teil = Konjunktion[randomIntFromInterval(0, Konjunktion.length - 1)]
+                    PrädikatZeit = Teil[1]
+                    if (Satz.endsWith(" et ")) {
+                        Teil[0] = Teil[0].toLowerCase();
+                    }
+
+                    if (Teil[2] == "SatzOhneNomen") {
+                        SatzOhneNomen = true
+                    }
+
+                    Satz = Satz + " " + Teil[0] + " ";
                 }
-
-                if (Teil[2] == "SatzOhneNomen") {
-                    SatzOhneNomen = true
-                }
-
-                Satz = Satz + " " + Teil[0] + " ";
-            }
-        }   
-
-        if(config.SatzOhneNomen == false) {
-            var Subject
-            if(Plural) {
-                Subject = Nomen[randomIntFromInterval(0, Nomen.length - 1)][6 - 1]
-            }else{
-                Subject = Nomen[randomIntFromInterval(0, Nomen.length - 1)][1 - 1]
-            }
-            if (Satz.endsWith(". ")) {
-               Subject = capitalizeFirstLetter(Subject);
-            }
-            Satz = Satz + Subject;
+            }   
+        //--DEFINIERE EINE KONJUNKTION--//
         }
+
+
+
+
+
+        //--DEFINIERE EINEN SUBJEKT--//
+        if(config.SatzOhneNomen == false) {
+            if(config.verbDeklinieren == true) {
+                var Subject
+                if(Plural) {
+                    Subject = Nomen[randomIntFromInterval(0, Nomen.length - 1)][6 - 1]
+                }else{
+                    Subject = Nomen[randomIntFromInterval(0, Nomen.length - 1)][1 - 1]
+                }
+                if (Satz.endsWith(". ")) {
+                    Subject = capitalizeFirstLetter(Subject);
+                }
+                Satz = Satz + Subject;
+            }
+
+            if(config.verbDeklinieren == false) {
+                var Subject
+                if(Plural) {
+                    Subject = Nomen[randomIntFromInterval(0, Nomen.length - 1)][9 - 1]
+                }else{
+                    Subject = Nomen[randomIntFromInterval(0, Nomen.length - 1)][4 - 1]
+                }
+                if (Satz.endsWith(". ")) {
+                    Subject = capitalizeFirstLetter(Subject);
+                }
+                Satz = Satz + Subject;
+            }
+        }
+        //--DEFINIERE EINEN SUBJEKT--//
+
+
+
 
         var PrädikatsListe = Predikate[randomIntFromInterval(0, Predikate.length - 1)]
         var Prädikat = verbDeklinieren(PrädikatsListe[0], 3, PrädikatZeit)
+
+        if (config.ACI == true) {
+            PrädikatsListe = Kopfverbe[randomIntFromInterval(0, Kopfverbe.length - 1)]
+            Prädikat = verbDeklinieren(PrädikatsListe[0], 3, PrädikatZeit)
+
+            var ACIConfig = []
+            ACIConfig.Saetze = 1
+            ACIConfig.SatzOhneNomen = false
+            ACIConfig.PrädikatZeit = PrädikatZeit
+            ACIConfig.verbDeklinieren = false
+            ACIConfig.ACI = false
+
+            Satz = Satz + " " + generateSentenceByConfig(ACIConfig)
+        }
+
+        if (config.verbDeklinieren == false) {
+            if (PrädikatZeit == "Presens") {
+                Prädikat = PrädikatsListe[0]
+            } else {
+                //KRIEGE DEN PERFEKTSTAMM und ADDE isse
+            }
+        }
+
         if (Plural) {
             Prädikat = verbDeklinieren(PrädikatsListe[0], 6, PrädikatZeit)
         }
 
-        //Gucke, ob es eine PFLICHT Satzobjekt gibt.
-        for(var i2=0;i2!=PrädikatsListe[1].length;i2++){
-            if (PrädikatsListe[1][i2] == "Akkusativ") {
-                var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][3]
-                Satz = Satz + " " + Teil;
-            }
-            if (PrädikatsListe[1][i2] == "Dativ") {
-                var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][2]
-                Satz = Satz + " " + Teil;
-            }
-            if (PrädikatsListe[1][i2] == "Genitiv") {
-                var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][1]
-                Satz = Satz + " " + Teil;
-            }
-            if (PrädikatsListe[1][i2] == "Ablativ") {
-                var matches = PrädikatsListe[2][i2].match(/\[(.*?)\]/);
-                var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][4]
-                if(matches) {
-                    var replaced = matches[1].replace("[", "").replace("]", "")
-                    replaced = replaced.split(",")
-                    replaced = replaced[randomIntFromInterval(0, replaced.length - 1)]
-                    if (replaced.startsWith("_NON_")) {
-                        Satz = Satz + " " + replaced.replace("_NON_", "");
-                    } else {
-                        Satz = Satz + " " + replaced.replace("_NON_", "") + " " + Teil
-                    }
-                }else{
-                    Satz = Satz + " " + Teil;
-                }
-            }
-        }
 
-        //Gucke, ob es eine MÖGLICHES Satzobjekt gibt.
-        for(var i2=0;i2!=PrädikatsListe[2].length;i2++){
-            if (PrädikatsListe[2][i2] == "Akkusativ") {
-                if (randomIntFromInterval(0, 1) == 1) {
+
+        if (config.ACI == false){
+            //Gucke, ob es eine PFLICHT Satzobjekt gibt.
+            for(var i2=0;i2!=PrädikatsListe[1].length;i2++){
+                if (PrädikatsListe[1][i2] == "Akkusativ") {
                     var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][3]
                     Satz = Satz + " " + Teil;
                 }
-            }
-            if (PrädikatsListe[2][i2] == "Dativ") {
-                if (randomIntFromInterval(0, 1) == 1) {
+                if (PrädikatsListe[1][i2] == "Dativ") {
                     var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][2]
                     Satz = Satz + " " + Teil;
                 }
-            }
-            if (PrädikatsListe[2][i2] == "Genitiv") {
-                if (randomIntFromInterval(0, 1) == 1) {
+                if (PrädikatsListe[1][i2] == "Genitiv") {
                     var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][1]
                     Satz = Satz + " " + Teil;
                 }
-            }
-            if (PrädikatsListe[2][i2].startsWith("Ablativ")) {
-                if (randomIntFromInterval(0, 1) == 1) {
+                if (PrädikatsListe[1][i2] == "Ablativ") {
                     var matches = PrädikatsListe[2][i2].match(/\[(.*?)\]/);
                     var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][4]
                     if(matches) {
@@ -251,7 +278,49 @@ function generateSentenceByConfig(config) {
                     }else{
                         Satz = Satz + " " + Teil;
                     }
+                }
+            }
+            //Gucke, ob es eine PFLICHT Satzobjekt gibt.
 
+
+            //Gucke, ob es eine MÖGLICHES Satzobjekt gibt.
+            for(var i2=0;i2!=PrädikatsListe[2].length;i2++){
+                if (PrädikatsListe[2][i2] == "Akkusativ") {
+                    if (randomIntFromInterval(0, 1) == 1) {
+                        var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][3]
+                        Satz = Satz + " " + Teil;
+                    }
+                }
+                if (PrädikatsListe[2][i2] == "Dativ") {
+                    if (randomIntFromInterval(0, 1) == 1) {
+                        var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][2]
+                        Satz = Satz + " " + Teil;
+                    }
+                }
+                if (PrädikatsListe[2][i2] == "Genitiv") {
+                    if (randomIntFromInterval(0, 1) == 1) {
+                        var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][1]
+                        Satz = Satz + " " + Teil;
+                    }
+                }
+                if (PrädikatsListe[2][i2].startsWith("Ablativ")) {
+                    if (randomIntFromInterval(0, 1) == 1) {
+                        var matches = PrädikatsListe[2][i2].match(/\[(.*?)\]/);
+                        var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][4]
+                        if(matches) {
+                            var replaced = matches[1].replace("[", "").replace("]", "")
+                            replaced = replaced.split(",")
+                            replaced = replaced[randomIntFromInterval(0, replaced.length - 1)]
+                            if (replaced.startsWith("_NON_")) {
+                                Satz = Satz + " " + replaced.replace("_NON_", "");
+                            } else {
+                                Satz = Satz + " " + replaced.replace("_NON_", "") + " " + Teil
+                            }
+                        }else{
+                            Satz = Satz + " " + Teil;
+                        }
+
+                    }
                 }
             }
         }
@@ -259,9 +328,14 @@ function generateSentenceByConfig(config) {
         if (randomIntFromInterval(0, 20) == 20) {
             Satz = Satz + " non iam"
         }
+        //Gucke, ob es eine MÖGLICHES Satzobjekt gibt.
+
+
+
 
         Satz = Satz + " " + Prädikat;
-        
+
+
         if (SatzOhneNomen == true) {
             Satz = Satz + ", ";
             var configSatzOhneNomen = []
@@ -271,26 +345,34 @@ function generateSentenceByConfig(config) {
             Satz = Satz + generateSentenceByConfig(configSatzOhneNomen)
         }
 
+
+
         if (i == 0) {
-            Satz = capitalizeFirstLetter(Satz)
+            if (config.verbDeklinieren == true) {
+                Satz = capitalizeFirstLetter(Satz)
+            }
         }
 
-        if(startSaetze != 1 && KommaPlaziert == false) {
-            if (randomIntFromInterval(0, 1) == 1 || SatzOhneNomen == true)  {
-                if (!Satz.endsWith(".")) {
-                    Satz = Satz + ". "
-                }else {
-                    Satz = Satz + " "
+
+        if (config.verbDeklinieren == true) {
+            if(startSaetze != 1 && KommaPlaziert == false) {
+                if (randomIntFromInterval(0, 1) == 1 || SatzOhneNomen == true)  {
+                    if (!Satz.endsWith(".")) {
+                        Satz = Satz + ". "
+                    }else {
+                        Satz = Satz + " "
+                    }
+                } else {
+                    Satz = Satz + " et "
                 }
+                KommaPlaziert = true;
             } else {
-                Satz = Satz + " et "
-            }
-            KommaPlaziert = true;
-        } else {
-            if (!Satz.endsWith(".")) {
-                Satz = Satz + "."
+                if (!Satz.endsWith(".")) {
+                    Satz = Satz + "."
+                }
             }
         }
+
     }
     return Satz;
 }
