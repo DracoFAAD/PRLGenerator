@@ -4,28 +4,28 @@ var Nomen = [
     //#endregion Namen
 
     //#region Lektion 1
-    ["silentium", "silentii", "silentio", "silentium", "silentio", "silentia", "silentiorum", "silentiis", "silentia", "silentiis"],
-    ["asinus", "asini", "asino", "asinum", "asino", "asini", "asinorum", "asinis", "asinos", "asinis"],
-    ["villa", "villae", "villae", "villam", "villa", "villae", "villarum", "villis", "villas", "villis"],
-    ["amica", "amicae", "amicae", "amicam", "amica", "amicae", "amicarum", "amicis", "amicas", "amicis"],
-    ["Quintus", "Quinti", "Quinto", "Quintum", "Quinto", "Quinti", "Quintorum", "Quintis", "Quintos", "Quintis"],
+    ["silentium", "silentii", "silentio", "silentium", "silentio", "silentia", "silentiorum", "silentiis", "silentia", "silentiis", "Ablativ"],
+    ["asinus", "asini", "asino", "asinum", "asino", "asini", "asinorum", "asinis", "asinos", "asinis", "ObjektSubjekt"],
+    ["villa", "villae", "villae", "villam", "villa", "villae", "villarum", "villis", "villas", "villis", "Objekt"],
+    ["amica", "amicae", "amicae", "amicam", "amica", "amicae", "amicarum", "amicis", "amicas", "amicis", "Subjekt"],
+    ["Quintus", "Quinti", "Quinto", "Quintum", "Quinto", "Quinti", "Quintorum", "Quintis", "Quintos", "Quintis", "Subjekt"],
     //#endregion Lektion 1
     //#region Lektion 2
-    ["familia", "familiae", "familiae", "familiam", "familia", "familiae", "familiarum", "familiis", "familias", "familiis"],
-    ["matrona", "matronae", "matronae", "matronam", "matrona", "matronae", "matronarum", "matronis", "matronas", "matronis"],
-    ["servus", "servi", "servo", "servum", "servo", "servi", "servorum", "servis", "servos", "servis"],
-    ["serva", "servae", "servae", "servam", "serva", "servae", "servarum", "servis", "servas", "servis"],
-    ["amicus", "amici", "amico", "amicum", "amico", "amici", "amicorum", "amicis", "amicos", "amicis"],
-    ["donum", "doni", "dono", "donum", "dono", "dona", "donorum", "donis", "dona", "donis"],
-    ["malum", "mali", "malo", "malum", "malo", "mala", "malorum", "malis", "mala", "malis"],
-    ["equus", "equi", "equo", "equum", "equo", "equi", "equorum", "equis", "equos", "equis"],
+    ["familia", "familiae", "familiae", "familiam", "familia", "familiae", "familiarum", "familiis", "familias", "familiis", "Subjekt"],
+    ["matrona", "matronae", "matronae", "matronam", "matrona", "matronae", "matronarum", "matronis", "matronas", "matronis", "Subjekt"],
+    ["servus", "servi", "servo", "servum", "servo", "servi", "servorum", "servis", "servos", "servis", "Subjekt"],
+    ["serva", "servae", "servae", "servam", "serva", "servae", "servarum", "servis", "servas", "servis", "Subjekt"],
+    ["amicus", "amici", "amico", "amicum", "amico", "amici", "amicorum", "amicis", "amicos", "amicis", "Subjekt"],
+    ["donum", "doni", "dono", "donum", "dono", "dona", "donorum", "donis", "dona", "donis", "Objekt"],
+    ["malum", "mali", "malo", "malum", "malo", "mala", "malorum", "malis", "mala", "malis", "Objekt"],
+    ["equus", "equi", "equo", "equum", "equo", "equi", "equorum", "equis", "equos", "equis", "ObjektSubjekt"],
     //#endregion
     //#region Lektion 3
-    ["nuntius", "nuntii", "nuntio", "nuntium", "nuntio", "nuntii", "nuntiorum", "nuntiis", "nuntios", "nuntiis"],
-    ["insula", "insulae", "insulae", "insulam", "insula", "insulae", "insularum", "insulis", "insulas", "insulis"],
-    ["provincia", "provinciae", "provinciae", "provinciam", "provincia", "provinciae", "provinciarum", "provinciis", "provincias", "provinciis"],
-    ["periculum", "periculi", "periculo", "periculum", "periculo", "pericula", "periculorum", "periculis", "pericula", "periculis"],
-    ["lacrima", "lacrimae", "lacrimae", "lacrimam", "lacrima", "lacrimae", "lacrimarum", "lacrimis", "lacrimas", "lacrimis"]
+    ["nuntius", "nuntii", "nuntio", "nuntium", "nuntio", "nuntii", "nuntiorum", "nuntiis", "nuntios", "nuntiis", "Subjekt"],
+    ["insula", "insulae", "insulae", "insulam", "insula", "insulae", "insularum", "insulis", "insulas", "insulis", "Objekt"],
+    ["provincia", "provinciae", "provinciae", "provinciam", "provincia", "provinciae", "provinciarum", "provinciis", "provincias", "provinciis", "Objekt"],
+    ["periculum", "periculi", "periculo", "periculum", "periculo", "pericula", "periculorum", "periculis", "pericula", "periculis", "Objekt"],
+    ["lacrima", "lacrimae", "lacrimae", "lacrimam", "lacrima", "lacrimae", "lacrimarum", "lacrimis", "lacrimas", "lacrimis", "ObjektObjekt"]
     //#endregion
 ]
 
@@ -33,38 +33,43 @@ var Nomen = [
 
 var Predikate = [
     //#region Lektion 1
-    ["clamare", [], []], ["tacere", [], []], ["iacere", [], ["Ablativ [in]"]], 
-    ["patere", [], ["Dativ"]], ["stare", [], []], ["exspectare", [], ["Akkusativ"]], 
-    ["cogitare", [], []], ["venire", [], ["Ablativ [ad]"]], ["properare", [], []], 
-    ["placere", ["Dativ"], []], ["gaudere", [], []],
+    ["clamare", [], [],], 
+    ["tacere", [], []], 
+    ["iacere", [], ["Ablativ [in]"]], 
+    ["patere", [], ["Dativ"]], 
+    ["stare", [], []], 
+    ["exspectare", [], ["Akkusativ [Subjekt]"]], 
+    ["cogitare", [], []], 
+    ["venire", [], ["Ablativ [ad]"]], 
+    ["properare", [], []], 
+    ["placere", ["Dativ"], []], 
+    ["gaudere", [], []],
     //#endregion
     //#region Lektion 2
     ["apparere", [], ["Ablativ [in,_NON_procul]"]],
     ["ridere", [], []],
     ["appropinquare", [], ["Ablativ [ad,_NON_procul]"]],
-    ["salutare", [], ["Akkusativ"]],
+    ["salutare", [], ["Akkusativ [Subjekt]"]],
     ["cessare", [], []]
     ["timere", [], ["Ablativ [ante]"]],
-    ["apportare", ["Akkusativ"], []],
-    ["delectare", [], ["Akkusativ"]]
-    
-
+    ["apportare", ["Akkusativ [ObjektObjekt]"], []],
+    ["delectare", [], ["Akkusativ [Subjekt]"]]
     //#endregion
     //#region Lektion 3
     ["intrare", [], ["Ablativ [in]"]],
-    ["rogare", ["Akkusativ"], []],
-    ["respondere", [], ["Akkusativ"]],
-    ["debere",[],["Akkusativ"]],
-    ["iubere", ["Akkusativ"], []],
+    ["rogare", ["Akkusativ [Subjekt]"], []],
+    ["respondere", [], ["Akkusativ [Subjekt]"]],
+    ["debere",[],[]],
+    ["iubere", ["Akkusativ [Subjekt]"], []],
     ["navigare", [], ["Ablativ [ad]"]],
-    ["audire", [], ["Akkusativ"]],
-    ["administrare", [], ["Akkusativ"]],
-    ["scire", [], ["Akkusativ"]],
+    ["audire", [], ["Akkusativ [Subjekt]"]],
+    ["administrare", [], ["Akkusativ [Objekt]"]],
+    ["scire", [], ["Akkusativ [Subjekt,ObjektSubjekt]"]],
     ["amare", ["Akkusativ"], []],
-    ["vocare", ["Akkusativ"], []],
-    ["parere", ["Akkusativ"], []],
+    ["vocare", ["Akkusativ [Subjekt,ObjektSubjekt]"], []],
+    ["parere", ["Akkusativ [Subjekt]"], []],
     ["parare", [], []],
-    ["tenere", ["Akkusativ"], []]
+    ["tenere", ["Akkusativ [ObjektObjekt]"], []]
     //#endregion 
 ]
 
@@ -188,10 +193,21 @@ function generateSentenceByConfig(config) {
         if(config.SatzOhneNomen == false) {
             if(config.verbDeklinieren == true) {
                 var Subject
+                var SubjektTable
+
+
                 if(Plural) {
-                    Subject = Nomen[randomIntFromInterval(0, Nomen.length - 1)][6 - 1]
+                    SubjektTable = Nomen[randomIntFromInterval(0, Nomen.length - 1)]
+                    while(SubjektTable[10] != "Subjekt" && SubjektTable[10] != "ObjektSubjekt") {
+                        SubjektTable = Nomen[randomIntFromInterval(0, Nomen.length - 1)]
+                    }
+                    Subject = SubjektTable[6 - 1]
                 }else{
-                    Subject = Nomen[randomIntFromInterval(0, Nomen.length - 1)][1 - 1]
+                    SubjektTable = Nomen[randomIntFromInterval(0, Nomen.length - 1)]
+                    while (SubjektTable[10] != "Subjekt" && SubjektTable[10] != "ObjektSubjekt") {
+                        SubjektTable = Nomen[randomIntFromInterval(0, Nomen.length - 1)]
+                    }
+                    Subject = SubjektTable[1 - 1]
                 }
                 if (Satz.endsWith(". ")) {
                     Subject = capitalizeFirstLetter(Subject);
@@ -201,10 +217,19 @@ function generateSentenceByConfig(config) {
 
             if(config.verbDeklinieren == false) {
                 var Subject
+                var SubjektTable
                 if(Plural) {
-                    Subject = Nomen[randomIntFromInterval(0, Nomen.length - 1)][9 - 1]
+                    SubjektTable = Nomen[randomIntFromInterval(0, Nomen.length - 1)]
+                    while(SubjektTable[10] != "Subjekt" && SubjektTable[10] != "ObjektSubjekt") {
+                        SubjektTable = Nomen[randomIntFromInterval(0, Nomen.length - 1)]
+                    }
+                    Subject = SubjektTable[9 - 1]
                 }else{
-                    Subject = Nomen[randomIntFromInterval(0, Nomen.length - 1)][4 - 1]
+                    SubjektTable = Nomen[randomIntFromInterval(0, Nomen.length - 1)]
+                    while(SubjektTable[10] != "Subjekt" && SubjektTable[10] != "ObjektSubjekt") {
+                        SubjektTable = Nomen[randomIntFromInterval(0, Nomen.length - 1)]
+                    }
+                    Subject = SubjektTable[4 - 1]
                 }
                 if (Satz.endsWith(". ")) {
                     Subject = capitalizeFirstLetter(Subject);
@@ -218,6 +243,9 @@ function generateSentenceByConfig(config) {
 
 
         var PrädikatsListe = Predikate[randomIntFromInterval(0, Predikate.length - 1)]
+        while (PrädikatsListe == undefined) {
+            PrädikatsListe = Predikate[randomIntFromInterval(0, Predikate.length - 1)]
+        }
         var Prädikat = verbDeklinieren(PrädikatsListe[0], 3, PrädikatZeit)
 
         if (config.ACI == true) {
@@ -251,20 +279,32 @@ function generateSentenceByConfig(config) {
         if (config.ACI == false){
             //Gucke, ob es eine PFLICHT Satzobjekt gibt.
             for(var i2=0;i2!=PrädikatsListe[1].length;i2++){
-                if (PrädikatsListe[1][i2] == "Akkusativ") {
-                    var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][3]
-                    Satz = Satz + " " + Teil;
+                if (PrädikatsListe[1][i2].startsWith("Akkusativ")) {
+                    var matches = PrädikatsListe[1][i2].match(/\[(.*?)\]/);
+                    var Nomenn = Nomen[randomIntFromInterval(0, Nomen.length - 1)];
+                    if(matches) {
+                        var replaced = matches[1].replace("[", "").replace("]", "")
+                        replaced = replaced.split(",")
+                        while (!replaced.includes(Nomenn[10])) {
+                            Nomenn = Nomen[randomIntFromInterval(0, Nomen.length - 1)];
+                        }
+                        var Teil = Nomenn[3]
+                        Satz = Satz + " " + Teil
+                    } else {
+                        var Teil = Nomenn[3]
+                        Satz = Satz + " " + Teil
+                    }
                 }
-                if (PrädikatsListe[1][i2] == "Dativ") {
+                if (PrädikatsListe[1][i2].startsWith("Dativ")) {
                     var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][2]
                     Satz = Satz + " " + Teil;
                 }
-                if (PrädikatsListe[1][i2] == "Genitiv") {
+                if (PrädikatsListe[1][i2].startsWith("Genitiv")) {
                     var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][1]
                     Satz = Satz + " " + Teil;
                 }
-                if (PrädikatsListe[1][i2] == "Ablativ") {
-                    var matches = PrädikatsListe[2][i2].match(/\[(.*?)\]/);
+                if (PrädikatsListe[1][i2].startsWith("Ablativ")) {
+                    var matches = PrädikatsListe[1][i2].match(/\[(.*?)\]/);
                     var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][4]
                     if(matches) {
                         var replaced = matches[1].replace("[", "").replace("]", "")
@@ -285,19 +325,29 @@ function generateSentenceByConfig(config) {
 
             //Gucke, ob es eine MÖGLICHES Satzobjekt gibt.
             for(var i2=0;i2!=PrädikatsListe[2].length;i2++){
-                if (PrädikatsListe[2][i2] == "Akkusativ") {
-                    if (randomIntFromInterval(0, 1) == 1) {
-                        var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][3]
-                        Satz = Satz + " " + Teil;
+                if (PrädikatsListe[2][i2].startsWith("Akkusativ")) {
+                    var matches = PrädikatsListe[2][i2].match(/\[(.*?)\]/);
+                    var Nomenn = Nomen[randomIntFromInterval(0, Nomen.length - 1)];
+                    if(matches) {
+                        var replaced = matches[1].replace("[", "").replace("]", "")
+                        replaced = replaced.split(",")
+                        while (!replaced.includes(Nomenn[10])) {
+                            Nomenn = Nomen[randomIntFromInterval(0, Nomen.length - 1)];
+                        }
+                        var Teil = Nomenn[3]
+                        Satz = Satz + " " + Teil
+                    } else {
+                        var Teil = Nomenn[3]
+                        Satz = Satz + " " + Teil
                     }
                 }
-                if (PrädikatsListe[2][i2] == "Dativ") {
+                if (PrädikatsListe[2][i2].startsWith("Dativ")) {
                     if (randomIntFromInterval(0, 1) == 1) {
                         var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][2]
                         Satz = Satz + " " + Teil;
                     }
                 }
-                if (PrädikatsListe[2][i2] == "Genitiv") {
+                if (PrädikatsListe[2][i2].startsWith("Genitiv")) {
                     if (randomIntFromInterval(0, 1) == 1) {
                         var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][1]
                         Satz = Satz + " " + Teil;
