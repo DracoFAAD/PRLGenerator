@@ -7,6 +7,7 @@ var Nomen = [
     ["silentium", "silentii", "silentio", "silentium", "silentio", "silentia", "silentiorum", "silentiis", "silentia", "silentiis", "Ablativ"],
     ["asinus", "asini", "asino", "asinum", "asino", "asini", "asinorum", "asinis", "asinos", "asinis", "ObjektSubjekt"],
     ["villa", "villae", "villae", "villam", "villa", "villae", "villarum", "villis", "villas", "villis", "Objekt"],
+    ["villa", "villae", "villae", "villam", "villa", "villae", "villarum", "villis", "villas", "villis", "Ablativ"],
     ["amica", "amicae", "amicae", "amicam", "amica", "amicae", "amicarum", "amicis", "amicas", "amicis", "Subjekt"],
     ["Quintus", "Quinti", "Quinto", "Quintum", "Quinto", "Quinti", "Quintorum", "Quintis", "Quintos", "Quintis", "Subjekt"],
     //#endregion Lektion 1
@@ -23,9 +24,30 @@ var Nomen = [
     //#region Lektion 3
     ["nuntius", "nuntii", "nuntio", "nuntium", "nuntio", "nuntii", "nuntiorum", "nuntiis", "nuntios", "nuntiis", "Subjekt"],
     ["insula", "insulae", "insulae", "insulam", "insula", "insulae", "insularum", "insulis", "insulas", "insulis", "Objekt"],
+    ["insula", "insulae", "insulae", "insulam", "insula", "insulae", "insularum", "insulis", "insulas", "insulis", "Ablativ"],
     ["provincia", "provinciae", "provinciae", "provinciam", "provincia", "provinciae", "provinciarum", "provinciis", "provincias", "provinciis", "Objekt"],
     ["periculum", "periculi", "periculo", "periculum", "periculo", "pericula", "periculorum", "periculis", "pericula", "periculis", "Objekt"],
-    ["lacrima", "lacrimae", "lacrimae", "lacrimam", "lacrima", "lacrimae", "lacrimarum", "lacrimis", "lacrimas", "lacrimis", "ObjektObjekt"]
+    ["lacrima", "lacrimae", "lacrimae", "lacrimam", "lacrima", "lacrimae", "lacrimarum", "lacrimis", "lacrimas", "lacrimis", "ObjektObjekt"],
+    //#endregion
+    //#region Lektion 4
+    ["homo", "hominis", "homini", "hominem", "homine", "homines", "hominorum", "hominibus", "homines", "hominibus", "Subjekt"],
+    ["spectaculum", "spectaculi", "spectaculo", "spectaculum", "spectaculo", "spectacula", "spectaculorum", "spectaculis", "spectacula", "spectaculis", "Objekt"],
+    ["consul", "consulis", "consuli", "consulem", "consule", "consules", "consulorum", "consulibus", "consules", "consulibus", "Subjekt"],
+    ["avus", "avi", "avo", "avum", "avo", "avi", "avorum", "avis", "avos", "avis", "Subjekt"],
+    ["imperator", "imperatoris", "imperatori", "imperatorem", "imperatore", "imperatores", "imperatororum", "imperatoribus", "imperatores", "imperatoribus", "Subjekt"],
+    ["populus", "populi", "populo", "populum", "populo", "populi", "populorum", "populis", "populos", "populis", "Subjekt"],
+    ["verbum", "verbi", "verbo", "verbum", "verbo", "verba", "verborum", "verbis", "verba", "verbis", "Inhalt"],
+    ["simulacrum", "simulacri", "simulacro", "simulacrum", "simulacro", "simulacra", "simulacrorum", "simulacris", "simulacra", "simulacris", "ObjektObjekt"],
+    ["rex", "regis", "regi", "regem", "rege", "reges", "regorum", "regibus", "reges", "regibus", "Subjekt"],
+    ["regina", "reginae", "reginae", "reginam", "regina", "reginae", "reginarum", "reginis", "reginas", "reginis", "Subjekt"],
+    ["deus", "dei", "deo", "deum", "deo", "dei", "deorum", "deis", "deos", "deis", "Subjekt"],
+    ["dea", "deae", "deae", "deam", "dea", "deae", "dearum", "deis", "deas", "deis", "Subjekt"],
+    ["amor", "amoris", "amori", "amorem", "amore", "amores", "amororum", "amoribus", "amores", "amoribus", "Gefühl"],
+    ["initium", "initii", "initio", "initium", "initio", "initia", "initiorum", "initiis", "initia", "initiis", "Objekt"],
+    ["signum", "signi", "signo", "signum", "signo", "signa", "signorum", "signis", "signa", "signis", "Inhalt"],
+    ["ardor", "ardoris", "ardori", "ardorem", "ardore", "ardores", "ardororum", "ardoribus", "ardores", "ardoribus", "Ablativ"],
+    ["clamor", "clamoris", "clamori", "clamorem", "clamore", "clamores", "clamororum", "clamoribus", "clamores", "clamoribus", "Ablativ"],
+    ["furor", "furoris", "furori", "furorem", "furore", "furores", "furororum", "furoribus", "furores", "furoribus", "Ablativ"]
     //#endregion
 ]
 
@@ -53,7 +75,7 @@ var Predikate = [
     ["cessare", [], []]
     ["timere", [], ["Ablativ [ante]"]],
     ["apportare", ["Akkusativ [ObjektObjekt]"], []],
-    ["delectare", [], ["Akkusativ [Subjekt]"]]
+    ["delectare", [], ["Akkusativ [Subjekt]"]],
     //#endregion
     //#region Lektion 3
     ["intrare", [], ["Ablativ [in]"]],
@@ -69,8 +91,15 @@ var Predikate = [
     ["vocare", ["Akkusativ [Subjekt,ObjektSubjekt]"], []],
     ["parere", ["Akkusativ [Subjekt]"], []],
     ["parare", [], []],
-    ["tenere", ["Akkusativ [ObjektObjekt]"], []]
+    ["tenere", ["Akkusativ [ObjektObjekt]"], []],
     //#endregion 
+    //#region Lektion 4
+    ["sedere", ["Ablativ [in]"], []],
+    ["videre", ["Akkusativ"], []],
+    ["spectare", ["Akkusativ [Subjekt,SubjektObjekt,Objekt,ObjektObjekt]"], []],
+    ["dare", ["Dativ", "Akkusativ [ObjektObjekt]"], []],
+    ["incitare", ["Akkusativ [Subjekt]"], []]
+    //#endregion
 ]
 
 var Konjunktion = [
@@ -91,7 +120,7 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function deklinieren(nome, deklination) {
+function deklinieren(nome, deklination, kG) {
     if (deklination == "m") {
         return `["${nome + "us"}", "${nome + "i"}", "${nome + "o"}", "${nome + "um"}", "${nome + "o"}", "${nome + "i"}", "${nome + "orum"}", "${nome + "is"}", "${nome + "os"}", "${nome + "is"}"]`
     }
@@ -100,6 +129,10 @@ function deklinieren(nome, deklination) {
     }
     if (deklination == "n") {
         return `["${nome + "um"}", "${nome + "i"}", "${nome + "o"}", "${nome + "um"}", "${nome + "o"}", "${nome + "a"}", "${nome + "orum"}", "${nome + "is"}", "${nome + "a"}", "${nome + "is"}"]`
+    }
+    if (deklination == "k") {
+        var nome2 = kG.substring(0, kG.length - 2)
+        return `["${nome}", "${nome2 + "is"}", "${nome2 + "i"}", "${nome2 + "em"}", "${nome2 + "e"}", "${nome2 + "es"}", "${nome2 + "orum"}", "${nome2 + "ibus"}", "${nome2 + "es"}", "${nome2 + "ibus"}"]`
     }
 }
 
@@ -296,8 +329,20 @@ function generateSentenceByConfig(config) {
                     }
                 }
                 if (PrädikatsListe[1][i2].startsWith("Dativ")) {
-                    var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][2]
-                    Satz = Satz + " " + Teil;
+                    var matches = PrädikatsListe[1][i2].match(/\[(.*?)\]/);
+                    var Nomenn = Nomen[randomIntFromInterval(0, Nomen.length - 1)];
+                    if(matches) {
+                        var replaced = matches[1].replace("[", "").replace("]", "")
+                        replaced = replaced.split(",")
+                        while (!replaced.includes(Nomenn[10])) {
+                            Nomenn = Nomen[randomIntFromInterval(0, Nomen.length - 1)];
+                        }
+                        var Teil = Nomenn[2]
+                        Satz = Satz + " " + Teil
+                    } else {
+                        var Teil = Nomenn[2]
+                        Satz = Satz + " " + Teil
+                    }
                 }
                 if (PrädikatsListe[1][i2].startsWith("Genitiv")) {
                     var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][1]
@@ -305,8 +350,12 @@ function generateSentenceByConfig(config) {
                 }
                 if (PrädikatsListe[1][i2].startsWith("Ablativ")) {
                     var matches = PrädikatsListe[1][i2].match(/\[(.*?)\]/);
-                    var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][4]
+                    var Nomenn = Nomen[randomIntFromInterval(0, Nomen.length - 1)];
                     if(matches) {
+                        while (Nomenn[10] != "Ablativ") {
+                            Nomenn = Nomen[randomIntFromInterval(0, Nomen.length - 1)];
+                        }
+                        var Teil = Nomenn[4]
                         var replaced = matches[1].replace("[", "").replace("]", "")
                         replaced = replaced.split(",")
                         replaced = replaced[randomIntFromInterval(0, replaced.length - 1)]
@@ -325,26 +374,40 @@ function generateSentenceByConfig(config) {
 
             //Gucke, ob es eine MÖGLICHES Satzobjekt gibt.
             for(var i2=0;i2!=PrädikatsListe[2].length;i2++){
-                if (PrädikatsListe[2][i2].startsWith("Akkusativ")) {
-                    var matches = PrädikatsListe[2][i2].match(/\[(.*?)\]/);
-                    var Nomenn = Nomen[randomIntFromInterval(0, Nomen.length - 1)];
-                    if(matches) {
-                        var replaced = matches[1].replace("[", "").replace("]", "")
-                        replaced = replaced.split(",")
-                        while (!replaced.includes(Nomenn[10])) {
-                            Nomenn = Nomen[randomIntFromInterval(0, Nomen.length - 1)];
+                if (randomIntFromInterval(0, 1) == 1) {
+                    if (PrädikatsListe[2][i2].startsWith("Akkusativ")) {
+                        var matches = PrädikatsListe[2][i2].match(/\[(.*?)\]/);
+                        var Nomenn = Nomen[randomIntFromInterval(0, Nomen.length - 1)];
+                        if(matches) {
+                            var replaced = matches[1].replace("[", "").replace("]", "")
+                            replaced = replaced.split(",")
+                            while (!replaced.includes(Nomenn[10])) {
+                                Nomenn = Nomen[randomIntFromInterval(0, Nomen.length - 1)];
+                            }
+                            var Teil = Nomenn[3]
+                            Satz = Satz + " " + Teil
+                        } else {
+                            var Teil = Nomenn[3]
+                            Satz = Satz + " " + Teil
                         }
-                        var Teil = Nomenn[3]
-                        Satz = Satz + " " + Teil
-                    } else {
-                        var Teil = Nomenn[3]
-                        Satz = Satz + " " + Teil
                     }
-                }
+                }   
                 if (PrädikatsListe[2][i2].startsWith("Dativ")) {
                     if (randomIntFromInterval(0, 1) == 1) {
-                        var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][2]
-                        Satz = Satz + " " + Teil;
+                        var matches = PrädikatsListe[2][i2].match(/\[(.*?)\]/);
+                        var Nomenn = Nomen[randomIntFromInterval(0, Nomen.length - 1)];
+                        if(matches) {
+                            var replaced = matches[1].replace("[", "").replace("]", "")
+                            replaced = replaced.split(",")
+                            while (!replaced.includes(Nomenn[10])) {
+                                Nomenn = Nomen[randomIntFromInterval(0, Nomen.length - 1)];
+                            }
+                            var Teil = Nomenn[2]
+                            Satz = Satz + " " + Teil
+                        } else {
+                            var Teil = Nomenn[2]
+                            Satz = Satz + " " + Teil
+                        }
                     }
                 }
                 if (PrädikatsListe[2][i2].startsWith("Genitiv")) {
@@ -356,8 +419,12 @@ function generateSentenceByConfig(config) {
                 if (PrädikatsListe[2][i2].startsWith("Ablativ")) {
                     if (randomIntFromInterval(0, 1) == 1) {
                         var matches = PrädikatsListe[2][i2].match(/\[(.*?)\]/);
-                        var Teil = Nomen[randomIntFromInterval(0, Nomen.length - 1)][4]
+                        var Nomenn = Nomen[randomIntFromInterval(0, Nomen.length - 1)];
                         if(matches) {
+                            while (Nomenn[10] != "Ablativ") {
+                                Nomenn = Nomen[randomIntFromInterval(0, Nomen.length - 1)];
+                            }
+                            var Teil = Nomenn[4]
                             var replaced = matches[1].replace("[", "").replace("]", "")
                             replaced = replaced.split(",")
                             replaced = replaced[randomIntFromInterval(0, replaced.length - 1)]
@@ -430,7 +497,9 @@ function generateSentenceByConfig(config) {
 function documentLoaded() {
     console.log(generateRandomConfig())
     document.getElementById("GeneratedSentence").textContent = generateSentenceByConfig(generateRandomConfig())
-    //document.getElementById("GeneratedSentence").textContent = deklinieren("lacrim", "f")
+    //document.getElementById("GeneratedSentence").textContent = deklinieren("furor", "k", "furoris")
+    //document.getElementById("GeneratedSentence").textContent = deklinieren("sign", "n")
+
 }
 
 function buttonClick() {
